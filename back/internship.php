@@ -59,6 +59,7 @@ class Internship
 	function __construct($id)
 	{
 		$this->id = new MongoId($id);
+        $this->updateInfo();
 	}
 	
 	private function updateInfo()
@@ -66,7 +67,7 @@ class Internship
 		$conn = Internship::getConnection();
 		$coll = Internship::getCollection($conn);
 		
-		$this->info =  $coll->find(array("_id" => $this->id));
+		$this->info =  $coll->findOne(array("_id" => $this->id));
 		
 		$conn->close();
 	}
