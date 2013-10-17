@@ -1,6 +1,5 @@
 <?php include_once('includes/top.php'); ?>
 <?php
-    include ("back/user.php");
     
     if(ISSET($_POST["signUp"]))
     {

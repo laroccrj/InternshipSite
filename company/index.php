@@ -1,4 +1,7 @@
-<?php include_once('includes/top.php'); ?>
+<?php
+$rootDir = "../";
+include_once('../includes/top.php');
+?>
 <?php    
     $user = $_SESSION["user"];
     
@@ -31,4 +34,4 @@
 <br />
 </div>
 
-<?php include_once('includes/bottom.php'); ?>
+<?php include_once('../includes/bottom.php'); ?>
