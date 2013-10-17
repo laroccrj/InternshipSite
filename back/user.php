@@ -26,6 +26,18 @@ class User
         return $conn->internship->users;
     }
     
+    public static function getUsers($query)
+    {
+        $conn = User::getConnection();
+        $coll = User::getCollection($conn);
+        
+        $users = $coll->find($query);
+        
+        $conn->close();
+        
+        return $users;
+    }
+    
     public static function login($email, $password)
     {
         $conn = User::getConnection();
@@ -203,4 +215,18 @@ class Company extends User
         
         return new Company($company["_id"]);
     }
+    
+    public function verify()
+    {
+        $conn = User::getConnection();
+        $coll = User::getCollection($conn);
+        
+        $set = array('$set' => array("verified" => true));
+        $query = array("_id" => $this->id);
+        
+        $coll->update($query, $set);
+        
+        $conn->close();
+    }
+
 }
