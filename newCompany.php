@@ -14,7 +14,7 @@
         
         $_SESSION["user"] = Company::newCompany($email, $password, $name);
         
-        header("Location: companyPanel.php");
+        header("Location: company/index.php");
     }
 ?>
 <div id="content">

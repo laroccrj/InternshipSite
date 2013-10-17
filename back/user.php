@@ -2,6 +2,7 @@
 
 class UserNotFoundException extends Exception { }
 class UserExistsException extends Exception { }
+class BadLoginException extends Exception { }
 
 class UserType
 {
@@ -25,30 +26,30 @@ class User
         return $conn->internship->users;
     }
     
-    public static function login($email, $password, $type)
+    public static function login($email, $password)
     {
         $conn = User::getConnection();
         $coll = User::getCollection($conn);
         
-        $query = array("email" => $email, "type" => $type);
+        $query = array("email" => $email);
         
         $user = $coll->findOne($query);
         
-        if(!$user)return false;
+        if(!$user)throw new BadLoginException("Email does not exist");
         
         if($user["password"] == $password)
         {
-            if($type == UserType::Student)
+            if($user["type"] == UserType::Student)
                 return new Student($user["_id"]);
                 
-            if($type == UserType::Admin)
+            if($user["type"] == UserType::Admin)
                 return new Admin($user["_id"]);
                 
-            if($type == UserType::Company)
+            if($user["type"] == UserType::Company)
                 return new Company($user["_id"]);
         }
-
-        return false;
+        else
+        throw new BadLoginException("Incorrect Password");
     }
     
     function __construct($id)

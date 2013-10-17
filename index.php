@@ -1,5 +1,36 @@
 <?php include_once('includes/top.php'); ?>
-
+<?php
+    if(ISSET($_POST["login"]))
+    {
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+        
+        try
+        {
+            $_SESSION["user"] = User::login($email, $password);
+            
+            switch($_SESSION["user"]->info["type"])
+            {
+                case(UserType::Student):
+                    header("Location: student/index.php");
+                    break;
+                case(UserType::Admin):
+                    header("Location: admin/index.php");
+                    break;
+                case(UserType::Company):
+                    header("Location: company/index.php");
+                    break;
+            }
+        }
+        catch(BadLoginException $e)
+        {
+            $error = $e->getMessage();
+            /*
+                TODO: display errors
+            */
+        }
+    }
+?>
 <div id="content">
 <div style="width: 230px; margin: auto; text-align: center;">
 <h2>Please Log In</h2>
