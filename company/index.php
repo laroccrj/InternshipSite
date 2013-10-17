@@ -4,7 +4,7 @@ include_once('../includes/top.php');
 ?>
 <?php    
     $user = $_SESSION["user"];
-    
+    require_once('../back/internship.php');
     /*
         TODO: Check that the user is logged in and is a company
     */
@@ -16,10 +16,31 @@ include_once('../includes/top.php');
     if($user->info["verified"])
     {
 ?>
-    <p>
-        Company stuff
-    </p>
-<?php
+        <p>
+            <a href="newInternship.php">Post New Internship</a>
+        </p>
+        <h3>Current Open Internships:</h3>
+        <table class="data">
+            <tr>
+              <th style="width:200px;">Title</th>
+              <th style="width:150px;">Contact Name</th>
+              <th style="width:150px;">Contact Email</th>
+              <th></th>
+            </tr>
+        <?php
+        $internships = Internship::getInternships(array("user" => $user->id, "open" => true));
+
+        foreach($internships as $internship)
+        {
+        ?>
+            <tr>
+                <td><?php echo $internship["title"]; ?></td>
+                <td><?php echo $internship["contact"]; ?></td>
+                <td><?php echo $internship["contactEmail"]; ?></td>
+                <td><a href="closePosition.php?id=<?php echo $internship["_id"]; ?>">Close</a></td>
+            </tr>
+        <?php
+        }
     }
     else
     {

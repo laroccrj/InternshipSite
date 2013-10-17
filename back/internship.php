@@ -13,31 +13,22 @@ class Internship
 		return $conn->internship->internships;
 	}
 	
-	public static function getInternships()
-	{
-		$conn = Internship::getConnectino();
-		$coll = Internship::getCollection($conn);
-		
-		$internships =  $coll->find();
-		
-		$conn->close();
-		
-		return $internships;
-	}
-	
 	public static function getInternships($query)
 	{
-		$conn = Internship::getConnectino();
+		$conn = Internship::getConnection();
 		$coll = Internship::getCollection($conn);
 		
-		$internships =  $coll->find($query);
+        if(ISSET($query))
+            $internships =  $coll->find($query);
+        else
+            $internships =  $coll->find();
 		
 		$conn->close();
 		
 		return $internships;
 	}
 	
-	public static function newInternship($user, $contact, $contactEmail, $title, $desc, $semester, $year)
+	public static function newInternship($user, $name, $contact, $contactEmail, $title, $desc, $semester, $year)
 	{
 		$internship = array(
 			"user" => $user,
@@ -50,9 +41,9 @@ class Internship
 			"year" => $year,
 			"open" => true,
 			"posted" => date("U")
-		)
+		);
 		
-		$conn = Internship::getConnectino();
+		$conn = Internship::getConnection();
 		$coll = Internship::getCollection($conn);
 		
 		$coll->insert($internship);
@@ -62,7 +53,7 @@ class Internship
 		return new Internship($internship["_id"]);
 	}
 	
-	private $id;
+	public $id;
 	public $info;
 	
 	function __construct($id)
@@ -72,7 +63,7 @@ class Internship
 	
 	private function updateInfo()
 	{
-		$conn = Internship::getConnectino();
+		$conn = Internship::getConnection();
 		$coll = Internship::getCollection($conn);
 		
 		$this->info =  $coll->find(array("_id" => $this->id));
@@ -82,7 +73,7 @@ class Internship
 	
 	public function close()
 	{
-		$conn = Internship::getConnectino();
+		$conn = Internship::getConnection();
 		$coll = Internship::getCollection($conn);
 		
 		$coll->update(array("_id" => $this->id), array('$set' => array("open" => false)));
