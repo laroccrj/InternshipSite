@@ -2,12 +2,13 @@
 $rootDir = "../";
 include_once('../includes/top.php');
 ?>
-<?php    
+<?php
+    if(!ISSET($_SESSION["user"])) header("Location: ../index.php");
+
     $user = $_SESSION["user"];
     require_once('../back/internship.php');
-    /*
-        TODO: Check that the user is logged in and is a company
-    */
+
+    if($user->info["type"] != UserType::Company) header("Location: ../index.php");
 ?>
 <div id="content">
 <div style="margin: auto;">
