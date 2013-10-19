@@ -6,6 +6,8 @@ include_once('../includes/top.php');
     User::checkLogin(UserType::Company, $rootDir);
     $user = $_SESSION["user"];
     
+    if(!$user->info["verified"]) header("Location: needVerify.php");
+    
     /*
         TODO: Check that the company is verified
     */

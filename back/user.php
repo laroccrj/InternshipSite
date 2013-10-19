@@ -191,6 +191,8 @@ class Student extends User
         $coll->update($query, $set);
         
         $conn->close();
+        
+        $this->updateInfo();
     }
     
 }
@@ -260,6 +262,8 @@ class Company extends User
         $coll->update($query, $set);
         
         $conn->close();
+        
+        $this->updateInfo();
     }
 
 }

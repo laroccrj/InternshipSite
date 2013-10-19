@@ -6,6 +6,8 @@
     User::checkLogin(UserType::Company, $rootDir);
     $user = $_SESSION["user"];
     
+    if(!$user->info["verified"]) header("Location: index.php");
+    
     require_once($rootDir."back/internship.php");
     
     $id = $_GET["id"];

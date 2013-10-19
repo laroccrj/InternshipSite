@@ -3,17 +3,31 @@
     
     if(ISSET($_POST["signUp"]))
     {
-        /*
-            TODO: error checking on form submission
-        */
+        $error = array();
         
-        $email = $_POST["email"];
-        $password = $_POST["password"];
-        $confPass = $_POST["confPassword"];
-        
-        $_SESSION["user"] = Student::newStudent($email, $password);
-        
-        header("Location: student/index.php");
+        try
+        {
+            $email = $_POST["email"];
+            $password = $_POST["password"];
+            $confPass = $_POST["confPassword"];
+            
+            if($password != $confPass) $error["pass"] = "Passwords don't match";
+
+            if(count($error) == 0)
+            {
+                $_SESSION["user"] = Student::newStudent($email, $password);
+            
+                header("Location: student/index.php");
+            }
+        }
+        catch(UserExistsException $e)
+        {
+            $error["email"] = "Email already in use";
+        }
+        catch(InvalidEmailException $e)
+        {
+            $error["email"] = "Invalid email";
+        }
     }
 ?>
 <div id="content">
@@ -26,10 +40,24 @@
 		<td>Email:</td>
 		<td><input type="text" name="email" value="" /></td>
 	</tr>
+    <?php if(ISSET($error["email"])) { ?>
+        <tr>
+        <td style="color:#ff0000" colspan="2">
+            <?php echo $error["email"]; ?>
+        </td>
+        </tr>
+    <?php } ?>
 	<tr>
 		<td>Password:</td>
 		<td><input type="password" name="password" value="" /></td>
 	</tr>
+    <?php if(ISSET($error["pass"])) { ?>
+        <tr>
+        <td style="color:#ff0000" colspan="2">
+            <?php echo $error["pass"]; ?>
+        </td>
+        </tr>
+    <?php } ?>
     <tr>
 		<td>Confirm:</td>
 		<td><input type="password" name="confPassword" value="" /></td>

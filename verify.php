@@ -1,5 +1,6 @@
 <?php
     include_once('back/user.php');
+    session_start();
     
     $id = $_GET["id"];
     
@@ -8,6 +9,9 @@
     $student = new Student($id);
     
     $student->verify();
+    
+    User::checkLogin(UserType::Student, $rootDir);
+    $_SESSION["user"] = $student;
     
     header("Location: index.php");
     
