@@ -2,11 +2,10 @@
     
     require_once("../back/user.php");
     
-    $id = $_GET["id"];
+    User::checkLogin(UserType::Admin, $rootDir);
+    $user = $_SESSION["user"];
     
-    /*
-        TODO: Check that id
-    */
+    $id = $_GET["id"];
     
     $company = new Company($id);
     $company->verify();

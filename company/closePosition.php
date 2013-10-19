@@ -1,7 +1,12 @@
 <?php
+    $rootDir = "../";
     
-    require_once("../back/user.php");
-    require_once("../back/internship.php");
+    require_once($rootDir."back/user.php");
+    
+    User::checkLogin(UserType::Company, $rootDir);
+    $user = $_SESSION["user"];
+    
+    require_once($rootDir."back/internship.php");
     
     $id = $_GET["id"];
     
