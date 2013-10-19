@@ -5,6 +5,7 @@ include_once('../includes/top.php');
 <?php    
     User::checkLogin(UserType::Student, $rootDir);
     $user = $_SESSION["user"];
+    if(!$user->info["verified"]) header("Location: needVerify.php");
     
     require_once('../back/internship.php');
     $internship = new Internship($_GET["id"]);
