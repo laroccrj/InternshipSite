@@ -3,10 +3,11 @@ $rootDir = "../";
 include_once('../includes/top.php');
 ?>
 <?php
+    User::checkLogin(UserType::Company, $rootDir);
     $user = $_SESSION["user"];
     
     /*
-        TODO: Check that the user is logged in and is a company and verified
+        TODO: Check that the company is verified
     */
     
     require_once('../back/internship.php');

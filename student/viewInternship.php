@@ -3,11 +3,10 @@ $rootDir = "../";
 include_once('../includes/top.php');
 ?>
 <?php    
+    User::checkLogin(UserType::Student, $rootDir);
     $user = $_SESSION["user"];
+    
     require_once('../back/internship.php');
-    /*
-        TODO: Check the get id and that the company owns that id
-    */
     $internship = new Internship($_GET["id"]);
 ?>
 <div id="content">

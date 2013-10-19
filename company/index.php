@@ -3,12 +3,10 @@ $rootDir = "../";
 include_once('../includes/top.php');
 ?>
 <?php
-    if(!ISSET($_SESSION["user"])) header("Location: ../index.php");
-
+    User::checkLogin(UserType::Company, $rootDir);
     $user = $_SESSION["user"];
+    
     require_once('../back/internship.php');
-
-    if($user->info["type"] != UserType::Company) header("Location: ../index.php");
 ?>
 <div id="content">
 <div style="margin: auto;">

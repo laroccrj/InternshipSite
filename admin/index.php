@@ -3,11 +3,8 @@ $rootDir = "../";
 include_once('../includes/top.php');
 ?>
 <?php
-	if(!ISSET($_SESSION["user"])) header("Location: ../index.php");
-
+	User::checkLogin(UserType::Admin, $rootDir);
     $user = $_SESSION["user"];
-    
-    if($user->info["type"] != UserType::Admin) header("Location: ../index.php");
 ?>
 <div id="content">
 <div style="margin: auto;">
