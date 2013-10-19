@@ -2,6 +2,7 @@
 
 class UserNotFoundException extends Exception { }
 class UserExistsException extends Exception { }
+class InvalidEmailException extends Exception { }
 class BadLoginException extends Exception { }
 class UserType
 {
@@ -117,6 +118,15 @@ class Student extends User
     public static function newStudent($email, $password)
     {   
         if(User::userExists($email)) throw new UserExistsException();
+        
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+            throw new InvalidEmailException();
+            
+        $domain = explode("@", $email)[1];
+        var_dump($domain);
+        
+        if($domain != "alfredstate.edu")
+            throw new InvalidEmailException();
         
         $conn = User::getConnection();
         $coll = User::getCollection($conn);
