@@ -135,7 +135,7 @@ class Student extends User
             "type" => UserType::Student,
             "email" => $email,
             "password" => md5($password),
-            "verified" => true /*should be false */
+            "verified" => false
         );
         
         $coll->insert($student);
