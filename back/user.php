@@ -105,6 +105,34 @@ class User
         
         return false;
     }
+    
+    public static function checkLogin($expectedType, $rootDir)
+    {
+        //is user logged in
+        if(!ISSET($_SESSION["user"]))
+        {
+            header("Location: ".$rootDir."index.php");
+            return;
+        }
+        
+        //are they the correct type
+        if($_SESSION["user"]->info["type"] != $expectedType)
+        {
+            //if not, redirect them to according index
+            switch($_SESSION["user"]->info["type"])
+            {
+                case(UserType::Student):
+                    header("Location: ".$rootDir."student/index.php");
+                    break;
+                case(UserType::Admin):
+                    header("Location: ".$rootDir."admin/index.php");
+                    break;
+                case(UserType::Company):
+                    header("Location: ".$rootDir."company/index.php");
+                    break;
+            }
+        }
+    }
 }
 
 class Student extends User
