@@ -8,6 +8,12 @@ include_once('../includes/top.php');
 ?>
 <div id="content">
 <div style="margin: auto;">
+    <h2>Control Panel:</h2>
+    <ul>
+        <li>
+            <a href="adminAccounts.php">Admin Accounts</a>
+        </li>
+    </ul>
     <?php
     $companies = User::getUsers(array("type" => UserType::Company, "verified" => false));
     
