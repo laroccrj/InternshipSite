@@ -12,7 +12,6 @@
             $confPass = $_POST["confPassword"];
             
             if($password != $confPass) $error["pass"] = "Passwords don't match";
-
             if(count($error) == 0)
             {
                 $_SESSION["user"] = Student::newStudent($email, $password);
@@ -28,6 +27,10 @@
         {
             $error["email"] = "Invalid email";
         }
+		catch(BadPasswordException $e)
+		{
+			$error["pass"] = "Password must be 6 characters or longer";
+		}
     }
 ?>
 <div id="content">

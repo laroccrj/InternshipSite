@@ -6,6 +6,8 @@ class InvalidEmailException extends Exception { }
 class BadLoginException extends Exception { }
 class InvalidPasswordException extends Exception { }
 class InvalidSignUpException extends Exception { }
+class InvalidNameException extends Exception { }
+class BadPasswordException extends Exception { }
 
 class UserType
 {
@@ -161,7 +163,9 @@ class Student extends User
         
         if($domain[1] != "alfredstate.edu")
             throw new InvalidEmailException();
-        
+        if(strlen($password) < 6)
+			throw new BadPasswordException();
+			
         $conn = User::getConnection();
         $coll = User::getCollection($conn);
      
@@ -248,7 +252,13 @@ class Company extends User
             
         if(filter_var($name, FILTER_SANITIZE_STRING) != $name)
             throw new InvalidSignUpException();
-        
+
+		if(strlen($password) < 6)
+			throw new BadPasswordException();
+            
+		if(strlen(trim($name)) == 0)
+			throw new InvalidNameException();
+
         $conn = User::getConnection();
         $coll = User::getCollection($conn);
         $company = array (
