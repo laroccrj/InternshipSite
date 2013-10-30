@@ -2,30 +2,42 @@
 <?php
 		$emailerr = "";
 		$passerr = "";
+		
     if(ISSET($_POST["login"]))
     {
-	function stripInput($input) 
+		function stripInput($input) 
 		{
-		$input = trim($input);
-		$input = stripslashes($input);
-		$input = htmlspecialchars($input);
-		return $input;
-		}	
-
+			$input = trim($input);
+			$input = stripslashes($input);
+			$input = htmlspecialchars($input);
+			return $input;
+		}
+		
 		$email = "";
 		$password = "";
+		
 		if(empty($_POST["email"]))
-				{$emailerr = "Email is required";}
-		else
-				{$email = stripInput($_POST["email"]);}
+		{
+			{$emailerr = "Email is required";}
+		}
+		else 
+		{
+			{$email = stripInput($_POST["email"]);}
 			if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email))
 			{
 				$emailerr = "Invalid email format";
 			}
+		}
+		
 		if(empty($_POST["password"]))
+		{
 			{$passerr = "Password is required";}
+		}
 		else
+		{
 		   {$password = stripInput($_POST["password"]);}
+		}
+		
         try
         {
             $_SESSION["user"] = User::login($email, $password);
