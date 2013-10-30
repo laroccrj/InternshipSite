@@ -10,7 +10,7 @@ VM download: https://www.dropbox.com/s/ep36siietjnkjw9/Proto.ova
 Using Git:
 
 <ol>
-  <li>Make sure to pull before you do any work with the command 'git pull'</li>
+  <li>Make sure to pull before you do any work with the command 'git pull origin master'</li>
   <li>Decide what feature you either want to create or fix.</li>
   <li>Check if there is an issue for this feature on GitHub. If not, create one so we can keep track of work</li>
   <li>Create a local branch for the feature with the command 'git branch newBranchName'</li>
