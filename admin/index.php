@@ -2,12 +2,12 @@
 $rootDir = "../";
 include_once('../includes/top.php');
 ?>
-<?php    
+<?php
+	if(!ISSET($_SESSION["user"])) header("Location: ../index.php");
+
     $user = $_SESSION["user"];
     
-    /*
-        TODO: Check that the user is logged in and is an admin
-    */
+    if($user->info["type"] != UserType::Admin) header("Location: ../index.php");
 ?>
 <div id="content">
 <div style="margin: auto;">
