@@ -134,12 +134,13 @@ class Student extends User
         
         /*
         TODO: Send verification email
-        
         $to = $email;
         $subject = "Confirm Alfred State Email";
+		$header = From AlfredState InternShip Program
         $message = "Please verify your email by going to this link: http://192.168.56.101/verify.php?id=".$newStudent["_id"];
-        
+		mail($to,$subject,$message,$header);
         */
+        
         
         return new Student($student["_id"]);
     }
