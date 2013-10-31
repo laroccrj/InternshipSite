@@ -1,10 +1,43 @@
 <?php include_once('includes/top.php'); ?>
 <?php
+		$emailerr = "";
+		$passerr = "";
+		
     if(ISSET($_POST["login"]))
     {
-        $email = $_POST["email"];
-        $password = $_POST["password"];
-        
+		function stripInput($input) 
+		{
+			$input = trim($input);
+			$input = stripslashes($input);
+			$input = htmlspecialchars($input);
+			return $input;
+		}
+		
+		$email = "";
+		$password = "";
+		
+		if(empty($_POST["email"]))
+		{
+			{$emailerr = "Email is required";}
+		}
+		else 
+		{
+			{$email = stripInput($_POST["email"]);}
+			if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email))
+			{
+				$emailerr = "Invalid email format";
+			}
+		}
+		
+		if(empty($_POST["password"]))
+		{
+			{$passerr = "Password is required";}
+		}
+		else
+		{
+		   {$password = stripInput($_POST["password"]);}
+		}
+		
         try
         {
             $_SESSION["user"] = User::login($email, $password);
@@ -39,11 +72,11 @@
 <table style="margin-bottom:10px;">
 	<tr>
 		<td>Email:</td>
-		<td><input type="text" name="email" value="" /></td>
+		<td><input type="text" name="email" value="" /><? echo $emailerr; ?></td>
 	</tr>
 	<tr>
 		<td>Password:</td>
-		<td><input type="password" name="password" value="" /></td>
+		<td><input type="password" name="password" value="" /><? echo $passerr; ?></td>
 	</tr>
 	<tr>
 		<td><input type="submit" name="login" value="Login" style="width: 100px;"/></td>

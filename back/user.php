@@ -3,7 +3,6 @@
 class UserNotFoundException extends Exception { }
 class UserExistsException extends Exception { }
 class BadLoginException extends Exception { }
-
 class UserType
 {
     const Student = "student";
@@ -49,7 +48,7 @@ class User
         
         if(!$user)throw new BadLoginException("Email does not exist");
         
-        if($user["password"] == $password)
+        if($user["password"] == md5($password))
         {
             if($user["type"] == UserType::Student)
                 return new Student($user["_id"]);
@@ -121,11 +120,11 @@ class Student extends User
         
         $conn = User::getConnection();
         $coll = User::getCollection($conn);
-        
+     
         $student = array (
             "type" => UserType::Student,
             "email" => $email,
-            "password" => $password,
+            "password" => md5($password),
             "verified" => true /*should be false */
         );
         
@@ -172,11 +171,10 @@ class Admin extends User
         
         $conn = User::getConnection();
         $coll = User::getCollection($conn);
-        
         $admin = array (
             "type" => UserType::Admin,
             "email" => $email,
-            "password" => $password
+            "password" => md5($password)
         );
         
         $coll->insert($admin);
@@ -200,12 +198,11 @@ class Company extends User
         
         $conn = User::getConnection();
         $coll = User::getCollection($conn);
-        
         $company = array (
             "type" => UserType::Company,
             "name" => $name,
             "email" => $email,
-            "password" => $password,
+            "password" => md5($password),
             "verified" => false
         );
         
