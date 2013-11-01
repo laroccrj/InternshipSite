@@ -6,6 +6,11 @@ Class project to make internship website
 
 VM download: https://www.dropbox.com/s/ep36siietjnkjw9/Proto.ova
 
+Setup Comands:
+<ol>
+  <li>git config --global user.email "yourEmail"</li>
+  <li>git config --global user.name "yourName"</li>
+</ol>
 
 Using Git:
 
