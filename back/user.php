@@ -2,6 +2,7 @@
 
 class UserNotFoundException extends Exception { }
 class UserExistsException extends Exception { }
+class InvalidEmailException extends Exception { }
 class BadLoginException extends Exception { }
 class UserType
 {
@@ -118,6 +119,15 @@ class Student extends User
     {   
         if(User::userExists($email)) throw new UserExistsException();
         
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+            throw new InvalidEmailException();
+            
+        $domain = explode("@", $email)[1];
+        var_dump($domain);
+        
+        if($domain != "alfredstate.edu")
+            throw new InvalidEmailException();
+        
         $conn = User::getConnection();
         $coll = User::getCollection($conn);
      
@@ -125,21 +135,18 @@ class Student extends User
             "type" => UserType::Student,
             "email" => $email,
             "password" => md5($password),
-            "verified" => true /*should be false */
+            "verified" => false
         );
         
         $coll->insert($student);
         
         $conn->close();
-        
-        /*
-        TODO: Send verification email
+
         $to = $email;
         $subject = "Confirm Alfred State Email";
-		$header = From AlfredState InternShip Program
-        $message = "Please verify your email by going to this link: http://192.168.56.101/verify.php?id=".$newStudent["_id"];
+		$header = "From AlfredState InternShip Program";
+        $message = "Please verify your email by going to this link: http://192.168.56.101/verify.php?id=".$student["_id"];
 		mail($to,$subject,$message,$header);
-        */
         
         
         return new Student($student["_id"]);
