@@ -17,7 +17,13 @@
 
 <div id="nav">
 <ul>
-    <a href="#"><li>Home</li></a>
-    <a href="#"><li>Search Internships</li></a>
+    <a href="<?php if(ISSET($rootDir)) echo $rootDir; ?>index.php"><li>Home</li></a>
+    if($user->info["type"] != UserType::Student) {
+        <a href="<?php if(ISSET($rootDir)) echo $rootDir; ?>/student/index.php"><li>Search Internships</li></a>
+    } else if if($user->info["type"] != UserType::Company) {
+        <a href="<?php if(ISSET($rootDir)) echo $rootDir; ?>/company/newInternship.php"><li>New Internship</li></a>
+        <a href="<?php if(ISSET($rootDir)) echo $rootDir; ?>/company/viewInternship.php"><li>View Internships</li></a>
+    }
+
 </ul>
 </div>
