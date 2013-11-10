@@ -213,6 +213,10 @@ class Admin extends User
     {   
         if(User::userExists($email)) throw new UserExistsException();
         
+		if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+            throw new InvalidEmailException();
+            
+	
         $conn = User::getConnection();
         $coll = User::getCollection($conn);
         $admin = array (
