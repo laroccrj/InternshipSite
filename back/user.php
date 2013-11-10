@@ -4,6 +4,8 @@ class UserNotFoundException extends Exception { }
 class UserExistsException extends Exception { }
 class InvalidEmailException extends Exception { }
 class BadLoginException extends Exception { }
+class InvalidNameException extends Exception { }
+class BadPasswordException extends Exception { }
 class UserType
 {
     const Student = "student";
@@ -155,7 +157,9 @@ class Student extends User
         
         if($domain[1] != "alfredstate.edu")
             throw new InvalidEmailException();
-        
+        if(strlen($password) < 6)
+			throw new BadPasswordException();
+			
         $conn = User::getConnection();
         $coll = User::getCollection($conn);
      
@@ -233,7 +237,14 @@ class Company extends User
     public static function newCompany($email, $password, $name)
     {   
         if(User::userExists($email)) throw new UserExistsException();
-        
+		
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+            throw new InvalidEmailException();
+		if(strlen($password) < 6)
+			throw new BadPasswordException();	
+		if(strlen($name) == 0)
+			throw new InvalidNameException();
+			
         $conn = User::getConnection();
         $coll = User::getCollection($conn);
         $company = array (
