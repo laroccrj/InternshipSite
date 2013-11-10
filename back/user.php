@@ -210,12 +210,7 @@ class Admin extends User
 		if(!filter_var($email, FILTER_VALIDATE_EMAIL))
             throw new InvalidEmailException();
             
-        $domain = explode("@", $email);
-        var_dump($domain);
-        
-        if($domain[1] != "alfredstate.edu")
-            throw new InvalidEmailException();
-			
+	
         $conn = User::getConnection();
         $coll = User::getCollection($conn);
         $admin = array (
