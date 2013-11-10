@@ -1,4 +1,4 @@
-<?php include_once('includes/top.php'); ?>
+<?php include_once('includes/topAdmin.php'); ?>
 <?php
     
     if(ISSET($_POST["signUp"]))
