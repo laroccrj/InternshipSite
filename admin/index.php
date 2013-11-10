@@ -1,6 +1,6 @@
 <?php
 $rootDir = "../";
-include_once('../includes/top.php');
+include_once('../includes/topAdmin.php');
 ?>
 <?php
 	User::checkLogin(UserType::Admin, $rootDir);
