@@ -18,6 +18,6 @@
 <div id="nav">
 <ul>
     <a href="index.php"><li>Home</li></a>
-    <a href="search.php"><li>Search Internships</li></a>
+    <a href="viewInternship.php"><li>Check your Internships</li></a>
 </ul>
 </div>
