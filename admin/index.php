@@ -9,7 +9,7 @@ include_once('../includes/top.php');
 <div id="content">
 <div style="margin: auto;">
     <h2>Control Panel:</h2>
-    <ul>
+    <ul style="list-style: none; margin-left: 15px;">
         <li>
             <a href="adminAccounts.php">Admin Accounts</a>
         </li>
