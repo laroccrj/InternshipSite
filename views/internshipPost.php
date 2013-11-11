@@ -2,7 +2,6 @@
     $info = $internship->info;
 ?>
 <div class="posting">
-<h3><?php echo $info['title']; ?></h3>
 <table cellspacing="10" cellpadding="1">
 		<tr>
 			<td>Contact Name:</td>
