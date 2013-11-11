@@ -19,5 +19,10 @@
 <ul>
     <a href="index.php"><li>Home</li></a>
     <a href="viewInternship.php"><li>Check your Internships</li></a>
+    <?php
+        if(ISSET($_SESSION['user'])) {
+            echo '<a href="'.$rootDir.'logout.php"><li>Logout</li></a>';
+        }
+    ?>
 </ul>
 </div>
