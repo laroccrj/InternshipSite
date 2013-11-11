@@ -18,7 +18,7 @@ include_once('../includes/top.php');
 <div style="margin: auto;">
 <h2 style="text-align: center;"><?php echo $internship->info["title"]; ?></h2>
 <?php
-    include_once("../views/intershipPost.php");
+    include_once("../views/internshipPost.php");
 ?>
 </div>
 <br />

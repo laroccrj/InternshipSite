@@ -38,9 +38,11 @@ include_once('../includes/top.php');
                 <td><?php echo $internship["contactEmail"]; ?></td>
                 <td><a href="closePosition.php?id=<?php echo $internship["_id"]; ?>">Close</a></td>
             </tr>
+        </table>
         <?php
         }
     }
+    
     else
     {
 ?>
