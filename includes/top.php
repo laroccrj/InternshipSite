@@ -19,5 +19,10 @@
 <ul>
     <a href="<?php if(ISSET($rootDir)) echo $rootDir; ?>index.php"><li>Home</li></a>
     <a href="<?php if(ISSET($rootDir)) echo $rootDir; ?>search.php"><li>Search Internships</li></a>
+    <?php
+        if(ISSET($_SESSION['user'])) {
+            echo '<a href="'.$rootDir.'logout.php"><li>Logout</li></a>';
+        }
+    ?>
 </ul>
 </div>
