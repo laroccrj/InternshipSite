@@ -17,7 +17,7 @@
 
 <div id="nav">
 <ul>
-    <a href="index.php"><li>Home</li></a>
-    <a href="search.php"><li>Search Internships</li></a>
+    <a href="<?php if(ISSET($rootDir)) echo $rootDir; ?>index.php"><li>Home</li></a>
+    <a href="<?php if(ISSET($rootDir)) echo $rootDir; ?>search.php"><li>Search Internships</li></a>
 </ul>
 </div>
