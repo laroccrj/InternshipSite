@@ -57,10 +57,11 @@ include_once('../includes/top.php');
 		</tr>
 		<tr>
 			<td><span>*</span>Semester:</td>
-			<td><select name="semester" style="width: 75px;">
-					<option value="Fall">Fall</option>
-					<option value="Spring">Spring</option>				
-				</select></td>
+			<td><input type="checkbox" name="semester" value="Fall" /> Fall
+                <input type="checkbox" name="semester" value="Spring" /> Spring
+                <input type="checkbox" name="semester" value="Summer" /> Summer
+                <input type="checkbox" name="semester" value="Winter" /> Winter
+                <input type="checkbox" name="semester" value="Year Round" /> Year Round</td>
 		</tr>
 		<tr>
 			<td><span>*</span>Year:</td>
