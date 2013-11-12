@@ -18,9 +18,20 @@
 <div id="nav">
 <ul>
     <a href="<?php if(ISSET($rootDir)) echo $rootDir; ?>index.php"><li>Home</li></a>
-    <a href="<?php if(ISSET($rootDir)) echo $rootDir; ?>search.php"><li>Search Internships</li></a>
     <?php
         if(ISSET($_SESSION['user'])) {
+            switch($_SESSION['user']->info['type']) {
+                case(UserType::Student):
+                echo '<a href="'.$rootDir.'search.php"><li>Search Internships</li></a>';
+                break;
+                case(UserType::Admin):
+                echo '<a href="'.$rootDir.'admin/newAdmin.php"><li>Add a New Administrator</li></a>';
+                echo '<a href="'.$rootDir.'search.php"><li>Search Internships</li></a>';
+                break;
+                case(UserType::Company):
+                echo '<a href="'.$rootDir.'company/viewInternship.php"><li>Check your Internships</li></a>';
+                break;  
+            }
             echo '<a href="'.$rootDir.'logout.php"><li>Logout</li></a>';
         }
     ?>
