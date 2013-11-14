@@ -33,14 +33,17 @@ include_once('../includes/top.php');
         {
         ?>
             <tr>
-                <td><a href="viewInternship.php?id=<?php echo $internship["_id"]; ?>"><?php echo $internship["title"]; ?></a></td>
+                <td><a href="viewInternship.php?id=<?php echo $internship['_id']; ?>"><?php echo $internship["title"]; ?></a></td>
                 <td><?php echo $internship["contact"]; ?></td>
                 <td><?php echo $internship["contactEmail"]; ?></td>
-                <td><a href="closePosition.php?id=<?php echo $internship["_id"]; ?>">Close Posting</a></td>
+                <td><a href="closePosition.php?id=<?php echo $internship['_id']; ?>">Close Posting</a></td>
             </tr>
-        </table>
+
         <?php
         }
+        ?>
+        </table>
+        <?php
     }
     
     else

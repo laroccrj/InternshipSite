@@ -9,6 +9,7 @@
 <head>
 <link rel="stylesheet" href="<?php echo $rootDir; ?>style.css" type="text/css" />
 <script type="text/javascript" src="<?php echo $rootDir; ?>javascript.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 
 <body>
@@ -33,7 +34,6 @@
                     echo '<a href="'.$rootDir.'search.php"><li>Search Internships</li></a>';
                     break;
                 case(UserType::Company):
-                    echo '<a href="'.$rootDir.'company/viewInternship.php"><li>Check your Internships</li></a>';
                     break;  
             }
             echo '<a href="'.$rootDir.'logout.php"><li>Logout</li></a>';
