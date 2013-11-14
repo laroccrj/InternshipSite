@@ -42,7 +42,16 @@ class User
         
         return $users;
     }
-    
+    public static function deluser($id)
+	{
+		$conn = User::getConnection();
+        $coll = User::getCollection($conn);
+		
+		$query = array("_id"=> new MongoId($id));
+		$user = $coll->remove($query);
+		return $user;
+		
+	}
     public static function login($email, $password)
     {
         $conn = User::getConnection();
