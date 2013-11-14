@@ -39,11 +39,18 @@ include_once('../includes/top.php');
             <td><a href="verifyCompany.php?id=<?php echo $company["_id"]; ?>">Verify</a></td>
 			<td><a href="delCompany.php?id=<?php echo $company["_id"]; ?>">Delete</a></td>
         </tr>
+	    </table>
     <?php
         }
     }
-    ?>
-    </table>
+	else if ($companies->count() <= 0)
+	{
+	?>
+		 <h3> No Companies need verifying</h3>
+	<?php
+		}
+	?>
+
 </div>
 <br />
 </div>
