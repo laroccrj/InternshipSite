@@ -4,13 +4,14 @@
 
     if(!ISSET($rootDir))
         $rootDir = "";
-		/*TODO -- MAKE email from session appear
-		if(isset($_SESSION['email']))
+		if(ISSET($_SESSION["user"]))
 		{
-		$email = $_SESSION['email'];;
-		}else
-		$email = "";
-		*/
+		$user = $_SESSION["user"];
+		}
+		else
+		$user = "";
+		
+		
 ?>
 <html>
 <head>
@@ -22,7 +23,23 @@
 <div id="container">
 
 <div id="header">
-<img src="<?php echo $rootDir; ?>images/header.jpg" alt="Alfred State Logo" /> <?php //echo $email ?>
+<img src="<?php echo $rootDir; ?>images/header.jpg" alt="Alfred State Logo" /> 
+	<?php 
+	if(ISSET($_SESSION["user"]))
+		{
+		$user = $_SESSION["user"];
+	?>
+	<table style="margin-left:800px;">
+	<th style="color:white;">
+	<?php	echo $user->info["email"] ; ?>
+	</th>
+	</table>
+	<?php
+		}
+		else
+		$user = "";
+		
+	?>
 </div>
 
 <div id="nav">
