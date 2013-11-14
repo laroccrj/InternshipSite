@@ -29,7 +29,7 @@
                     echo '<a href="'.$rootDir.'search.php"><li>Search Internships</li></a>';
                     break;
                 case(UserType::Admin):
-                    echo '<a href="'.$rootDir.'admin/newAdmin.php"><li>Add a New Administrator</li></a>';
+                    echo '<a href="'.$rootDir.'admin/adminAccounts.php"><li>Add a New Administrator</li></a>';
                     echo '<a href="'.$rootDir.'search.php"><li>Search Internships</li></a>';
                     break;
                 case(UserType::Company):
