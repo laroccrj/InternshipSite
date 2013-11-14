@@ -26,6 +26,7 @@ include_once('../includes/top.php');
           <th>Name</th>
           <th>Contact</th>
           <th>Verify</th>
+		  <th>Delete</th>
         </tr>
     <?php
         
@@ -36,6 +37,7 @@ include_once('../includes/top.php');
             <td style="width:250px;"><?php echo $company["name"]; ?></td>
             <td style="width:250px;"><?php echo $company["email"]; ?></td>
             <td><a href="verifyCompany.php?id=<?php echo $company["_id"]; ?>">Verify</a></td>
+			<td><a href="delCompany.php?id=<?php echo $company["_id"]; ?>">Delete</a></td>
         </tr>
     <?php
         }
