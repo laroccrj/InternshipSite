@@ -26,19 +26,18 @@
 <img src="<?php echo $rootDir; ?>images/header.jpg" alt="Alfred State Logo" /> 
 	<?php 
 	if(ISSET($_SESSION["user"]))
-		{
+	{
 		$user = $_SESSION["user"];
 	?>
-	<table style="margin-left:800px;">
-	<th style="color:white;">
-	<?php	echo $user->info["email"] ; ?>
-	</th>
-	</table>
+		<table style="margin-left:800px;">
+			<th style="color:white;">
+			<?php	echo $user->info["email"] ; ?>
+			</th>
+		</table>
 	<?php
-		}
-		else
-		$user = "";
-		
+	}
+	else
+		$user = "";	
 	?>
 </div>
 
