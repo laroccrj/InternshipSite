@@ -46,9 +46,11 @@ include_once('../includes/top.php');
 	else if ($companies->count() <= 0)
 	{
 	?>
-		 <h3> No Companies need verifying</h3>
+		<br />
+		<br />
+		<h3> No Companies need verifying</h3>
 	<?php
-		}
+	}
 	?>
 
 </div>
