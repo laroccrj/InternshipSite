@@ -48,7 +48,9 @@ include_once('../includes/top.php');
 	?>
 		<br />
 		<br />
-		<h3> No Companies need verifying</h3>
+		<table class="data">
+		<th>No Companies need verifying</th>
+		</table>
 	<?php
 	}
 	?>
