@@ -1,11 +1,8 @@
 <?php
     $info = $internship->info;
 ?>
+<div class="posting">
 <table cellspacing="10" cellpadding="1">
-		<tr>
-			<td>Company Name:</td>
-			<td><?php echo $info["name"]; ?></td>
-		</tr>
 		<tr>
 			<td>Contact Name:</td>
 			<td><?php echo $info["contact"]; ?></td>
@@ -35,3 +32,5 @@
 			<td></td>
 		</tr>
 	</table>
+</div>
+

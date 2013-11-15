@@ -26,7 +26,7 @@ include_once('../includes/top.php');
     <form action="" method="post">
     <table>
         <tr>
-            <td>Eamil:</td>
+            <td>Email:</td>
             <td><input type="text" name="email"></td>
         </tr>
         <tr>
@@ -63,6 +63,7 @@ include_once('../includes/top.php');
         <table class="data">
         <tr>
           <th>Email</th>
+          <th></th>
         </tr>
     <?php
         
@@ -71,7 +72,7 @@ include_once('../includes/top.php');
     ?>
         <tr>
             <td style="width:250px;"><?php echo $admin["email"]; ?></td>
-            <td><a href="delAdmin.php?id=<?php echo $admin["_id"]; ?>">Delete</a></td>
+            <td><a href="delAdmin.php?id=<?php echo $admin['_id']; ?>">Delete</a></td>
         </tr>
     <?php
         }

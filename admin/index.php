@@ -9,7 +9,7 @@ include_once('../includes/top.php');
 <div id="content">
 <div style="margin: auto;">
     <h2>Control Panel:</h2>
-    <ul>
+    <ul style="list-style: none; margin-left: 15px;">
         <li>
             <a href="adminAccounts.php">Admin Accounts</a>
         </li>
@@ -26,6 +26,7 @@ include_once('../includes/top.php');
           <th>Name</th>
           <th>Contact</th>
           <th>Verify</th>
+		  <th>Delete</th>
         </tr>
     <?php
         
@@ -36,12 +37,24 @@ include_once('../includes/top.php');
             <td style="width:250px;"><?php echo $company["name"]; ?></td>
             <td style="width:250px;"><?php echo $company["email"]; ?></td>
             <td><a href="verifyCompany.php?id=<?php echo $company["_id"]; ?>">Verify</a></td>
+			<td><a href="delCompany.php?id=<?php echo $company["_id"]; ?>">Delete</a></td>
         </tr>
+	    </table>
     <?php
         }
     }
-    ?>
-    </table>
+	else if ($companies->count() <= 0)
+	{
+	?>
+		<br />
+		<br />
+		<table class="data">
+		<th>No Companies need verifying</th>
+		</table>
+	<?php
+	}
+	?>
+
 </div>
 <br />
 </div>
