@@ -6,12 +6,10 @@
         $rootDir = "";
 		if(ISSET($_SESSION["user"]))
 		{
-		$user = $_SESSION["user"];
+			$user = $_SESSION["user"];
 		}
 		else
-		$user = "";
-		
-		
+			$user = "";
 ?>
 <html>
 <head>
@@ -31,7 +29,7 @@
 	?>
 		<table style="margin-left:800px;">
 			<th style="color:white;">
-			<?php	echo $user->info["email"] ; ?>
+				<?php	echo $user->info["email"] ; ?>
 			</th>
 		</table>
 	<?php
