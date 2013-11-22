@@ -1,9 +1,15 @@
 <?php
     include_once(ISSET($rootDir)? $rootDir.'back/user.php' : 'back/user.php');
     session_start();
-    
+
     if(!ISSET($rootDir))
         $rootDir = "";
+		if(ISSET($_SESSION["user"]))
+		{
+			$user = $_SESSION["user"];
+		}
+		else
+			$user = "";
 ?>
 <html>
 <head>
@@ -16,7 +22,22 @@
 <div id="container">
 
 <div id="header">
-<img src="<?php echo $rootDir; ?>images/header.jpg" alt="Alfred State Logo" />
+<img src="<?php echo $rootDir; ?>images/header.jpg" alt="Alfred State Logo" /> 
+	<?php 
+	if(ISSET($_SESSION["user"]))
+	{
+		$user = $_SESSION["user"];
+	?>
+		<table style="margin-left:800px;">
+			<th style="color:white;">
+				<?php	echo $user->info["email"] ; ?>
+			</th>
+		</table>
+	<?php
+	}
+	else
+		$user = "";	
+	?>
 </div>
 
 <div id="nav">
@@ -25,6 +46,7 @@
     <?php
    
         if(ISSET($_SESSION['user'])) {
+			
             switch($_SESSION['user']->info['type']) {
                 case(UserType::Student):
                     echo '<a href="'.$rootDir.'search.php"><li>Search Internships</li></a>';
