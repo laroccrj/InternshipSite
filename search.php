@@ -5,6 +5,7 @@ $title = "";
 $year = "";
 $semester = "";
 $location = "";
+$compayName = "";
 $query = array();
 ?>
 <div id="content">
@@ -15,10 +16,15 @@ $query = array();
 		<td>Title:</td>
 		<td><input type="text" name="title" value="" /></td>
 	</tr>
-<!--	<tr>
+	<tr>
+	<tr>
+	<!--	<td>Company Name:</td>
+		<td><input type="text" name="cname" value="" /></td>
+	</tr>
+	<tr>
 		<td>Location:</td>
 		<td><input type="text" name="location" value="" /></td>
-	</tr> -->
+	</tr>-->
 	<tr>
 		<td>Semester:</td>
 			<td><select name="semester" style="width: 75px;">
@@ -49,16 +55,22 @@ $query = array();
 <?php
 if(ISSET($_POST["submit"]))
 {
-	$searchterms = array();
+
+	$location = $_POST['location'];
 	$title = $_POST['title'];
+	$companyName = $_POST['cname'];
 	$year = $_POST['year'];
 	$semester = $_POST['semester'];
+	$locationregex = new MongoRegex('/^.*'.$location.'.*/i');
+	$compregex = new MongoRegex('/^.*'.$companyName.'.*/i');
 	$titleregex = new MongoRegex('/^.*'.$title.'.*/i');
 	$yearregex = new MongoRegex('/^'.$year.'/i');
 	$semesterregex = new MongoRegex('/^'.$semester.'/i');
 	$query=	array( '$or' => array(array('title' => $titleregex),
-									array('year' => $yearregex),
-									array('semester' => $semesterregex)));
+								  array('companyName' =>$compregex),
+								  array('location' =>$locationregex),
+								  array('year' => $yearregex),
+								  array('semester' => $semesterregex)));
 }
 $internships = Internship::getInternships($query);
 	if($internships->count() >= 1)
@@ -66,9 +78,11 @@ $internships = Internship::getInternships($query);
 	?>
 	<table class ="data">
 	<tr>
-		<th width="250">Title</th>
-		<th>Year</th>
-		<th>Semester</th>
+		<th width="215px" >Title</th>
+		<th >Year</th>
+		<th width="75px">Semester</th>
+		<th width="200px" >Company Name</th>
+		<th width="200px" >Location</th>
 	</tr>
 	</table>
 	<?php
@@ -82,9 +96,11 @@ $internships = Internship::getInternships($query);
 				?>
 					<table class="data">
 					<tr>
-						<td width="250"><a href="../student/viewInternship.php?id=<?php echo $internship['_id']; ?>"><?php echo $internship["title"]; ?></a></td>
+						<td width="215px"><a href="../student/viewInternship.php?id=<?php echo $internship['_id']; ?>"><?php echo $internship["title"]; ?></a></td>
 						<td><?php echo $internship["year"]; ?></td>
-						<td width="70"><?php echo $internship["semester"]; ?></td>
+						<td width="75px"><?php echo $internship["semester"]; ?></td>
+					<!--<td width="200px"><?php echo $internship["companyName"]; ?></td>
+						<td width="200px"><?php echo $internship["location"]; ?></td> -->
 					</tr>
 					</table>
 				
@@ -96,8 +112,10 @@ $internships = Internship::getInternships($query);
 				<table class="data">
 				<tr>
 					<td><a href="../admin/viewInternship.php?id=<?php echo $internship['_id']; ?>"><?php echo $internship["title"]; ?></a></td> 
-					<td><?php echo $internship["title"]; ?></td> 
-					<td><?php echo $internship["title"]; ?></td> 
+						<td><?php echo $internship["year"]; ?></td>
+						<td width="75px"><?php echo $internship["semester"]; ?></td>
+					<!--<td width="200px"><?php echo $internship["companyName"]; ?></td>
+						<td width="200px"><?php echo $internship["location"]; ?></td> -->
 				</tr>
 					</table>
 				<?php
