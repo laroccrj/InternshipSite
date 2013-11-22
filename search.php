@@ -5,6 +5,7 @@ $title = "";
 $year = "";
 $semester = "";
 $location = "";
+$query = array();
 ?>
 <div id="content">
 	<h3 id="breadcrumb">Home > Search Internships</h3>
@@ -64,7 +65,12 @@ $internships = Internship::getInternships($query);
     {	
 	?>
 	<table class ="data">
-		<th>Title</th>
+	<tr>
+		<th width="250">Title</th>
+		<th>Year</th>
+		<th>Semester</th>
+	</tr>
+	</table>
 	<?php
 		foreach ($internships as $internship)
 		{
@@ -74,22 +80,32 @@ $internships = Internship::getInternships($query);
 				{
 					case(UserType::Student):
 				?>
+					<table class="data">
 					<tr>
-						<td><a href="../student/viewInternship.php?id=<?php echo $internship['_id']; ?>"><?php echo $internship["title"]; ?></a></td>
+						<td width="250"><a href="../student/viewInternship.php?id=<?php echo $internship['_id']; ?>"><?php echo $internship["title"]; ?></a></td>
+						<td><?php echo $internship["year"]; ?></td>
+						<td width="70"><?php echo $internship["semester"]; ?></td>
 					</tr>
+					</table>
+				
 				<?php
+		
 					break;
 					case(UserType::Admin):
 				?>
-					<tr>
-						<td><a href="../admin/viewInternship.php?id=<?php echo $internship['_id']; ?>"><?php echo $internship["title"]; ?></a></td>
-					</tr>
+				<table class="data">
+				<tr>
+					<td><a href="../admin/viewInternship.php?id=<?php echo $internship['_id']; ?>"><?php echo $internship["title"]; ?></a></td> 
+					<td><?php echo $internship["title"]; ?></td> 
+					<td><?php echo $internship["title"]; ?></td> 
+				</tr>
+					</table>
 				<?php
 					break;
 				}
 				?>
 
-	</table>
+
 	<?php
 			}
 		}
