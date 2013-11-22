@@ -21,10 +21,11 @@ $location = "";
 	<tr>
 		<td>Semester:</td>
 			<td><select name="semester" style="width: 75px;">
-					<option value="fall">fall</option>
-					<option value="spring">spring</option>
-					<option value="summer">summer</option>	
-					<option value="All">All-Round</option>
+					<option value="Fall">fall</option>
+					<option value="Spring">spring</option>
+					<option value="Summer">summer</option>	
+					<option value="Winter">winter</option>
+					<option value="Year Round">All-Round</option>
 				</select></td>
 	</tr>
 	<tr>
@@ -45,11 +46,20 @@ $location = "";
 
 <div id="searchResults">
 <?php
-$title = $_POST['title'];
-$year = $_POST['year'];
-$semester = $_POST['semester'];
-
-$internships = Internship::getInternships(array("title" => $title));
+if(ISSET($_POST["submit"]))
+{
+	$searchterms = array();
+	$title = $_POST['title'];
+	$year = $_POST['year'];
+	$semester = $_POST['semester'];
+	$titleregex = new MongoRegex('/^.*'.$title.'.*/i');
+	$yearregex = new MongoRegex('/^'.$year.'/i');
+	$semesterregex = new MongoRegex('/^'.$semester.'/i');
+	$query=	array( '$or' => array(array('title' => $titleregex),
+									array('year' => $yearregex),
+									array('semester' => $semesterregex)));
+}
+$internships = Internship::getInternships($query);
 	if($internships->count() >= 1)
     {	
 	?>
