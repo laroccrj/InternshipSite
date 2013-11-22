@@ -56,19 +56,19 @@ $query = array();
 if(ISSET($_POST["submit"]))
 {
 
-	$location = $_POST['location'];
+//	$location = $_POST['location'];
 	$title = $_POST['title'];
-	$companyName = $_POST['cname'];
+//	$companyName = $_POST['cname'];
 	$year = $_POST['year'];
 	$semester = $_POST['semester'];
-	$locationregex = new MongoRegex('/^.*'.$location.'.*/i');
-	$compregex = new MongoRegex('/^.*'.$companyName.'.*/i');
+//	$locationregex = new MongoRegex('/^.*'.$location.'.*/i');
+//	$compregex = new MongoRegex('/^.*'.$companyName.'.*/i');
 	$titleregex = new MongoRegex('/^.*'.$title.'.*/i');
 	$yearregex = new MongoRegex('/^'.$year.'/i');
 	$semesterregex = new MongoRegex('/^'.$semester.'/i');
 	$query=	array( '$or' => array(array('title' => $titleregex),
-								  array('companyName' =>$compregex),
-								  array('location' =>$locationregex),
+							//	  array('companyName' =>$compregex),
+							//	  array('location' =>$locationregex),
 								  array('year' => $yearregex),
 								  array('semester' => $semesterregex)));
 }
