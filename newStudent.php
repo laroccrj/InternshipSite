@@ -37,7 +37,8 @@
 <div style="width: 230px; margin: auto; text-align: center;">
 <h2>Student Sign Up</h2>
 <br />
-<form action="" method="post">
+<form action="" id="studentsignup" method="post">
+<div id="errors"></div>
 <table>
 	<tr>
 		<td>Email:</td>

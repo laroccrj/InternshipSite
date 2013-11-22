@@ -23,7 +23,8 @@ include_once('../includes/top.php');
 <div id="content">
 <div style="margin: auto;">
     <h2>Add Admin:</h2>
-    <form action="" method="post">
+    <form action="" id="adminform" method="post">
+    <div id="errors"></div>
     <table>
         <tr>
             <td>Email:</td>

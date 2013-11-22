@@ -73,5 +73,10 @@ form span
     padding:5px;
 }
 
+#errors {
+    color: red;
+    margin-left: 10px;
+    list-style: none;
+}
 
 

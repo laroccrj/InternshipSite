@@ -48,7 +48,7 @@
 <div style="width: 230px; margin: auto; text-align: center;">
 <h2>Please Log In</h2>
 <br />
-<form action="" method="post">
+<form action="" id="loginform" method="post">
 <table style="margin-bottom:10px;">
 	<tr>
 		<td>Email:</td>
@@ -62,6 +62,7 @@
 		<td><input type="submit" name="login" value="Login" style="width: 100px;"/></td>
 		<td><input type="button" name="forget" value="Forgot Password?" /></td>
 	</tr>
+    <div id="errors"></div>
     <tr>
         <td colspan="2" style="color:#FF0000">
             <?php

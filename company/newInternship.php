@@ -32,7 +32,8 @@ include_once('../includes/top.php');
 <div id="content">
 <div style="margin: auto;">
     <h2 style="text-align: center;">Post New Internship</h2>
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="" method="post" id="newInternshipForm" enctype="multipart/form-data">
+    <div id="errors"></div><br />
 	<span>*</span> is required
 	<table cellspacing="10" cellpadding="1">
 		<tr>
