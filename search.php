@@ -16,9 +16,9 @@ $query = array();
 		<td>Title:</td>
 		<td><input type="text" name="title" value="" /></td>
 	</tr>
-	<tr>
-	<tr>
-	<!--	<td>Company Name:</td>
+	
+<!--	<tr>
+		<td>Company Name:</td>
 		<td><input type="text" name="cname" value="" /></td>
 	</tr>
 	<tr>
@@ -73,16 +73,16 @@ if(ISSET($_POST["submit"]))
 								  array('semester' => $semesterregex)));
 }
 $internships = Internship::getInternships($query);
-	if($internships->count() >= 1)
+	if($internships->count() >= 1 && $_POST["submit"])
     {	
 	?>
 	<table class ="data">
 	<tr>
-		<th width="215px" >Title</th>
+		<th width="130px" >Title</th>
 		<th >Year</th>
-		<th width="75px">Semester</th>
-		<th width="200px" >Company Name</th>
-		<th width="200px" >Location</th>
+		<th width="79px">Semester</th>
+	<!--	<th width="200px" >Company Name</th>
+		<th width="200px" >Location</th> -->
 	</tr>
 	</table>
 	<?php
@@ -96,9 +96,9 @@ $internships = Internship::getInternships($query);
 				?>
 					<table class="data">
 					<tr>
-						<td width="215px"><a href="../student/viewInternship.php?id=<?php echo $internship['_id']; ?>"><?php echo $internship["title"]; ?></a></td>
+						<td width="130px"><a href="../student/viewInternship.php?id=<?php echo $internship['_id']; ?>"><?php echo $internship["title"]; ?></a></td>
 						<td><?php echo $internship["year"]; ?></td>
-						<td width="75px"><?php echo $internship["semester"]; ?></td>
+						<td width="79px"><?php echo $internship["semester"]; ?></td>
 					<!--<td width="200px"><?php echo $internship["companyName"]; ?></td>
 						<td width="200px"><?php echo $internship["location"]; ?></td> -->
 					</tr>
